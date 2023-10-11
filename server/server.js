@@ -17,7 +17,7 @@ const PORT = 5000 || process.env.PORT;
 
 
 
-
+app.use('/', require('./routes/api'));
 
 
 app.listen(PORT, () => {
