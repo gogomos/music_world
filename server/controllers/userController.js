@@ -4,7 +4,7 @@ const { validationResult } = require('express-validator');
 const User = require('../models/User');
 const saltRounds = require('../config/env').SALT;
 const JwtSecretKey = require('../config/env').JwtSecretKey;
-const jwtHelper = require('../helpers/issueJwt');
+const jwtHelper = require('../helpers/genToken');
 
 exports.getUserById = async (req, res) => {
     const { id } = req.params;
@@ -130,7 +130,7 @@ exports.loginUser = async (req, res) => {
                 .status(401)
                 .json({ message: 'Incorrect email or password' });
 
-        const jwt = jwtHelper.issueJwt(user, JwtSecretKey);
+        const jwt = jwtHelper.genToken(user, JwtSecretKey);
         const { token, expires } = jwt;
 
         res.status(200).json({ user, token, expiresIn: expires });

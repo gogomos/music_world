@@ -64,11 +64,11 @@ router.post(
 
 router.get('/', getAllUsersList);
 router.get('/search', searchForUser);
-router.get('/:id', getUserById);
+router.get('/v1/user/:id', getUserById);
 
-router.put('/:id', updateUser);
+router.put('/v1/user/:id', updateUser);
 
-router.delete('/:id', deleteUser);
+router.delete('/v1/user/:id', deleteUser);
 
 module.exports = router;
 
