@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-// Define the User schema
-const userSchema = new mongoose.Schema({
+const customerSchema = new mongoose.Schema({
     first_name: {
         type: String,
         required: true,
@@ -10,44 +9,42 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+
     email: {
         type: String,
         required: true,
         unique: true,
     },
-    role: {
+
+    password: {
         type: String,
-        enum: ['manager', 'admin'],
         required: true,
     },
     username: {
         type: String,
         required: true,
     },
-    password: {
-        type: String,
-        required: true,
-    },
-    verified: {
-        type: Number,
-        default: 0,
-    },
+
     creation_date: {
-        type: Date, 
+        type: Date,
         default: Date.now,
     },
+
     last_login: {
-        type: Date, 
+        type: Date,
+        default: Date.now,
     },
-    last_update: {
-        type: Date, 
+
+    valid_account: {
+        type: Boolean,
+        default: false,
     },
+
     active: {
         type: Boolean,
-        default: true,
+        default: false,
     },
 });
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+const Customer = mongoose.model('Customer', customerSchema);
+module.exports = Customer;
